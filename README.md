@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+---
 
-1. Install dependencies
+# 'My Tasks' App
 
-   ```bash
-   npm install
-   ```
+## Description
 
-2. Start the app
+This is a simple React Native task management app built using Expo. Users can:
+- Add tasks
+- Mark tasks as completed or incomplete
+- Receive a notification reminder every 1 minute (until the task is marked completed)
+- Delete tasks
 
-   ```bash
-   npx expo start
-   ```
+The app uses the Expo Notifications API to remind users about incomplete tasks.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Setup and Running the App
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+**Clone the Repository:**
+```bash
+git clone https://github.com/yourusername/task-manager-app.git
+cd task-manager-app
+````
 
-## Get a fresh project
-
-When you're ready, run:
+**Install Dependencies:**
 
 ```bash
-npm run reset-project
+yarn
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+**Start the Development Server:**
 
-## Learn more
+```bash
+yarn start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+**Run on Your Device:**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* Download the **Expo Go** app from the App Store or Google Play Store.
+* Scan the QR code shown in your terminal or on your browser window after running `expo start`.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## Design Choices and Challenges
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+* **Manual Notification Rescheduling:**
+  Expo’s repeating notifications with seconds-based triggers are inconsistent across iOS and Android. To overcome this, I opted to **manually reschedule notifications** each time a task is toggled incomplete, ensuring consistent reminders every 1 minute regardless of platform.
+
+* **State Management:**
+  Instead of using a complex state management library, I leveraged **React Context API** with `useState` to manage tasks globally, keeping the app lightweight and easy to maintain.
+
+* **UX Considerations:**
+  I added **strike-through styling** to completed tasks and included a **delete button** for easy task management.
+
+---
