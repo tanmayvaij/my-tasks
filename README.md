@@ -9,6 +9,7 @@
 This is a simple React Native task management app built using Expo. Users can:
 - Add tasks
 - Mark tasks as completed or incomplete
+- Update tasks
 - Receive a notification reminder every 1 minute (until the task is marked completed)
 - Delete tasks
 
