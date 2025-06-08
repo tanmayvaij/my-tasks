@@ -4,16 +4,21 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { useGlobalState } from "@/context";
 import { cancelNotification } from "@/utils/cancelNotification";
 import { scheduleNotification } from "@/utils/scheduleNotification";
+import TaskEditModal from "./TaskEditModal";
 
-const TaskCard: React.FC<Task> = ({ text, isCompleted, id }) => {
+const TaskCard: React.FC<Task> = ({
+  text,
+  isCompleted,
+  id,
+  notificationId,
+}) => {
   const { setTasks, tasks } = useGlobalState();
 
   const deleteTask = async () => {
     const taskToDelete = tasks.find((task) => task.id === id);
 
-    if (taskToDelete?.notificationId) {
+    if (taskToDelete?.notificationId)
       await cancelNotification(taskToDelete.notificationId);
-    }
 
     setTasks((tasks: Task[]) => tasks.filter((task) => task.id !== id));
   };
@@ -52,12 +57,18 @@ const TaskCard: React.FC<Task> = ({ text, isCompleted, id }) => {
           {text}
         </Text>
       </View>
-      <Fontisto
-        name={`checkbox-${isCompleted ? "active" : "passive"}`}
-        size={20}
-        color={isCompleted ? "green" : "black"}
-        onPress={updateTaskStatus}
-      />
+      <View style={styles.completeEditContainer}>
+        {!isCompleted && (
+          <TaskEditModal text={text} id={id} notificationId={notificationId} />
+        )}
+        <Pressable onPress={updateTaskStatus}>
+          <Fontisto
+            name={`checkbox-${isCompleted ? "active" : "passive"}`}
+            size={20}
+            color={isCompleted ? "green" : "black"}
+          />
+        </Pressable>
+      </View>
     </View>
   );
 };
@@ -87,5 +98,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexShrink: 1,
     paddingRight: 40,
+  },
+  completeEditContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
