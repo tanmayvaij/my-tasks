@@ -40,7 +40,7 @@ yarn start
 **Run on Your Device:**
 
 * Download the **Expo Go** app from the App Store or Google Play Store.
-* Scan the QR code shown in your terminal or on your browser window after running `expo start`.
+* Scan the QR code shown in your terminal or on your browser window after running `yarn start`.
 
 ---
 
