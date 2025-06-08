@@ -21,8 +21,8 @@ The app uses the Expo Notifications API to remind users about incomplete tasks.
 
 **Clone the Repository:**
 ```bash
-git clone https://github.com/yourusername/task-manager-app.git
-cd task-manager-app
+git clone https://github.com/tanmayvaij/my-tasks
+cd my-tasks
 ````
 
 **Install Dependencies:**
